@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{AC83997C-E5FD-9249-A089-1F9CC0CAD8EC}</ProjectGuid>
+    <ProjectGuid>{A9FD4BAD-524B-7D3B-413B-FD4071F42057}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -626,15 +626,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.Timeline.Player.csproj">
-      <Project>{6D054661-162C-DCB7-CB5B-79E66AE17BB3}</Project>
+      <Project>{4D78896D-B793-E88C-EF05-38040170490F}</Project>
       <Name>Unity.Timeline.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
-      <Project>{8F66D07D-A86D-95F7-27A3-6657BC52294A}</Project>
+      <Project>{A54D6A07-3757-A762-3C2F-3E3C656BA0AC}</Project>
       <Name>Unity.TextMeshPro.Player</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.Player.csproj">
-      <Project>{34B2A94E-04F9-4352-9259-14EEBC269795}</Project>
+      <Project>{44E9B6AD-59F7-A327-9AF2-9BBAE5788548}</Project>
       <Name>UnityEngine.UI.Player</Name>
     </ProjectReference>
   </ItemGroup>
