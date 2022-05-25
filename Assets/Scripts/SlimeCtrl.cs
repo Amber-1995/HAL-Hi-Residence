@@ -6,53 +6,67 @@ public class SlimeCtrl : MonoBehaviour
 {
 
     public float jump_force;
-    public float move_speed;
+    public float min_jump_speed;
     public float charge_speed;
 
 
     private float charge_gauge = 0.0f;
     private bool on_floor = false;
+    private bool full_charge = false;
     private Rigidbody rb;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        //if(Input.GetKey(KeyCode.LeftArrow) && charge_gauge <= 0.0f)
-        //{
-        //    transform.Translate(-move_speed * Time.deltaTime, 0.0f, 0.0f);
-        //}
-
-        //if(Input.GetKey(KeyCode.RightArrow) && charge_gauge <= 0.0f)
-        //{
-        //    transform.Translate(move_speed * Time.deltaTime, 0.0f, 0.0f);
-        //}
-
-        if(Input.GetKey(KeyCode.Space) && on_floor)
+        if(on_floor && Input.GetKeyDown(KeyCode.Space))
         {
-            charge_gauge = charge_gauge + charge_speed * Time.deltaTime > 1.0f ? 1.0f : charge_gauge + charge_speed * Time.deltaTime;
+            animator.SetBool("charge",true);
+        }else
+        {
+            animator.SetBool("charge", false);
         }
 
-        if(Input.GetKeyUp(KeyCode.Space) && on_floor)
+        if(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "charge" && Input.GetKeyUp(KeyCode.Space))
         {
-            if(Input.GetKey(KeyCode.LeftArrow))
+            if(Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
             {
-                rb.AddForce(new Vector3(-1.0f, 1.0f, 0.0f) * charge_gauge * jump_force /1.414f);
+               
+                float current_time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                float length = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+                float t = current_time / length;
+                animator.SetBool("jump",true);
+                rb.AddForce(new Vector3(-jump_force * t, jump_force * t, 0.0f));
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
+            else if(Input.GetKey(KeyCode.RightArrow) &&!Input.GetKey(KeyCode.LeftArrow))
             {
-                rb.AddForce(new Vector3(1.0f, 1.0f, 0.0f) * charge_gauge * jump_force / 1.414f);
+                
+                float current_time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                float length = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+                float t = current_time / length;
+                animator.SetBool("jump", true);
+                rb.AddForce(new Vector3(jump_force * t, jump_force * t, 0.0f));
             }
             else
             {
-                rb.AddForce(new Vector3(0.0f, 1.0f, 0.0f) * charge_gauge * jump_force);
+                
+                float current_time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                float length = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+                float t = current_time / length;
+                animator.SetBool("jump", true);
+                rb.AddForce(new Vector3(0.0f, jump_force * t, 0.0f));
             }
-
-            charge_gauge = 0.0f;
+        }else
+        {
+            animator.SetBool("jump", false);
         }
+
+        
     }
 
     void OnCollisionEnter(Collision collision)
@@ -77,5 +91,10 @@ public class SlimeCtrl : MonoBehaviour
         {
             on_floor = false;
         }
+    }
+
+    public void FullCharge()
+    {
+        full_charge = true;
     }
 }

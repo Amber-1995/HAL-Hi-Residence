@@ -9,5 +9,6 @@ public class GameStart : MonoBehaviour
     public void StartEvent()
     {
         SceneManager.LoadScene("Stage01");
+        Debug.Log("233");
     }
 }

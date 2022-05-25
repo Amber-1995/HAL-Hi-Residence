@@ -8,6 +8,7 @@ public class Block : MonoBehaviour
     public bool enable_floor;
     public bool enable_left_wall;
     public bool enable_right_wall;
+    public bool enable_ceiling;
     public int block_num;
 
     public GameObject[] block;
@@ -15,7 +16,7 @@ public class Block : MonoBehaviour
     public GameObject floor;
     public GameObject left_wall;
     public GameObject right_wall;
-
+    public GameObject ceiling;
 
     // Start is called before the first frame update
     void OnValidate()
@@ -23,6 +24,7 @@ public class Block : MonoBehaviour
         floor.SetActive(enable_floor);
         left_wall.SetActive(enable_left_wall);  
         right_wall.SetActive(enable_right_wall);
+        ceiling.SetActive(enable_ceiling);
         MeshFilter meshFilter = GetComponent<MeshFilter>();
         meshFilter.sharedMesh = block[block_num].GetComponent<MeshFilter>().sharedMesh;
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
