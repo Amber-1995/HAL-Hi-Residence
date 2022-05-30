@@ -8,7 +8,6 @@ public class GameStart : MonoBehaviour
     // Start is called before the first frame update
     public void StartEvent()
     {
-        SceneManager.LoadScene("Stage01");
-        Debug.Log("233");
+        SceneManager.LoadScene(1);
     }
 }

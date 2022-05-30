@@ -41,16 +41,16 @@ public class SlimeCtrl : MonoBehaviour
                 float length = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
                 float t = current_time / length;
                 animator.SetBool("jump",true);
-                rb.AddForce(new Vector3(-jump_force * t, jump_force * t, 0.0f));
+                rb.AddForce(new Vector3(-jump_force * t *0.5f, jump_force * t, 0.0f));
             }
-            else if(Input.GetKey(KeyCode.RightArrow) &&!Input.GetKey(KeyCode.LeftArrow))
+            else if(Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
             {
                 
                 float current_time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
                 float length = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
                 float t = current_time / length;
                 animator.SetBool("jump", true);
-                rb.AddForce(new Vector3(jump_force * t, jump_force * t, 0.0f));
+                rb.AddForce(new Vector3(jump_force * t * 0.5f, jump_force * t, 0.0f));
             }
             else
             {
